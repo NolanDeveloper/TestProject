@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+        <title>Подробности заказа</title>
+        <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    </head>
+    <body>
+        <div class="container">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <h2 th:inline="text">Подробности заказа #[[${order.id}]]:</h2>
+            <div>
+                <div class="row">
+                    <div class="col-sm-2 text-right">Клиент:</div>
+                    <div class="col-sm-10"><p th:text="${order.client}"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 text-right">Дата:</div>
+                    <div class="col-sm-10"><p th:text="${order.date}"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 text-right">Адрес:</div>
+                    <div class="col-sm-10"><p th:text="${order.address}"/></div>
+                </div>
+                <div class="row">
+                    <p class="col-sm-2 text-right">Товары:</p>
+                    <div class="col-sm-10 container">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Цена</th>
+                                <th>Количество</th>
+                            </tr>
+                            <tr th:each="orderLine : ${orderLines}">
+                                <td th:text="${orderLine.goods.name}">Наименование</td>
+                                <td th:text="${orderLine.goods.price}">Цена</td>
+                                <td th:text="${orderLine.count}">Количество</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.nolan'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+bootRun {
+	addResources = true
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework.boot:spring-boot-starter-web")
+    compile("javax.servlet:javax.servlet-api:3.1.0")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    runtime("org.springframework.boot:spring-boot-devtools")
+	compile("com.h2database:h2:1.4.192")
+	compile("org.webjars:bootstrap:3.3.4")
+	compile("org.webjars:jquery:2.1.4")
+	compile("org.webjars.npm:primeng:4.2.2")
+	compile("org.webjars.npm:typescript:2.6.1")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+}

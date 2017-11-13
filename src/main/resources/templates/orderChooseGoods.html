@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+        <title>Новый заказ</title>
+        <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    </head>
+    <body>
+        <div class="container">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <h2>Выберите товары</h2>
+            <form class="form-group" th:action="@{/orders/new/create}"  method="post">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                    </tr>
+                    <tr th:each="g, stat : ${goods}">
+                        <td hidden="hidden"><input name="goodsIds" type="number" th:value="${g.id}"/></td>
+                        <td th:text="${g.name}"/>
+                        <td th:text="${g.price}"/>
+                        <td><input name="counts" type="number" value="0"/></td>
+                    </tr>
+                </table>
+                <input class="btn" type="submit" value="Перейти к оформлению"/>
+            </form>
+        </div>
+    </body>
+</html>
